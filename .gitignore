@@ -1,0 +1,49 @@
+# Visual Studio
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+**/obj/
+**/bin/
+
+# User-specific files
+*.rsuser
+.vs/
+.vscode/
+*.suo
+*.user
+*.ttinclude
+
+# Log files
+*.log
+
+# Database
+*.mdf
+*.ldf
+
+# Environment and Config
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+appsettings.json
+
+# Generated Code
+*.generated.cs
+
+# JetBrains Rider
+.idea/
+
+# NuGet Packages
+packages/
+*.nupkg
+project.lock.json
+
+# Publish
+wwwroot/
+node_modules/
+dist/
