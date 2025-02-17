@@ -45,13 +45,13 @@ A comprehensive RESTful API built with **ASP.NET Core 7.0** that handles **sport
 
 ### ⚙️ Installation
 
-1️⃣ Clone the repository
+1️⃣ Clone the repository:
 ```bash
-git clone https://github.com/hapup14/sports-ticket-booking-api.git
-cd sports-ticket-booking-api
+git clone https://github.com/Praveen-Hapuarachchi/SportsTicketBooking-Backend.git
+cd SportsTicketBooking-Backend
 ```
 
-2️⃣ Update database connection in `appsettings.json`:
+2️⃣ Update the database connection in `appsettings.json`:
 ```json
 {
   "ConnectionStrings": {
@@ -66,12 +66,12 @@ cd sports-ticket-booking-api
 }
 ```
 
-3️⃣ Run migrations
+3️⃣ Run migrations:
 ```bash
 dotnet ef database update
 ```
 
-4️⃣ Start the application
+4️⃣ Start the application:
 ```bash
 dotnet run
 ```
@@ -112,7 +112,7 @@ Authorization: Bearer <your_jwt_token>
 
 ## 📦 Project Structure
 ```
-SportsTicketBookingAPI/
+SportsTicketBooking-Backend/
 ├── 📂 Controllers/
 │   ├── 📜 AuthController.cs
 │   ├── 📜 TicketsController.cs
@@ -155,7 +155,7 @@ Standard HTTP status codes with detailed messages:
 - 👨‍💻 **Developer:** Praveen Hapuarachchi
 - 📧 **Email:** hapup14@gmail.com
 - 📞 **Phone:** +94 9255150
-- 🔗 **LinkedIn:** [Praveen Hapuarachchi](www.linkedin.com/in/praveen-hapuarachchi)
+- 🔗 **LinkedIn:** [Praveen Hapuarachchi](https://www.linkedin.com/in/praveen-hapuarachchi)
 - 🛠️ **Issues:** Please open an issue in the repository
 
 ---
