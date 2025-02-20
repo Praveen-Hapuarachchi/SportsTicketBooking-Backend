@@ -111,6 +111,20 @@ namespace SportsTicketBooking.Controllers
             var tickets = await _ticketService.GetTicketsByAdminId(adminId);
             return Ok(tickets);
         }
+
+        // New Endpoint: Get Booking List for a Specific Ticket
+        [HttpGet("bookings/{ticketId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetBookingsForTicket(int ticketId)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null) return Unauthorized("Invalid user.");
+
+            var adminId = int.Parse(userIdClaim.Value);
+            var bookings = await _ticketService.GetBookingsForTicket(ticketId, adminId);
+
+            return bookings.Count > 0 ? Ok(bookings) : NotFound("No bookings found for this ticket.");
+        }
     }
 
     public class AddTicketRequest

@@ -81,5 +81,24 @@ namespace SportsTicketBooking.Services
                 .Where(t => t.AdminId == adminId)
                 .ToListAsync();
         }
+
+        // New method: Get list of users who booked a specific ticket
+        public async Task<List<object>> GetBookingsForTicket(int ticketId, int adminId)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(t => t.Id == ticketId);
+            if (ticket == null || ticket.AdminId != adminId)
+                return new List<object>(); // Ticket doesn't exist or Admin didn't create it
+
+            var bookings = await _context.Bookings
+                .Where(b => b.TicketId == ticketId)
+                .Select(b => new
+                {
+                    UserFullName = b.UserName,
+                    TicketCount = b.Count
+                })
+                .ToListAsync();
+
+            return bookings.Cast<object>().ToList();
+        }
     }
 }
