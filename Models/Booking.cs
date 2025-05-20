@@ -4,27 +4,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsTicketBooking.Models
 {
+    // Represents a booking made by a user for a specific ticket/event
     public class Booking
     {
+        // Primary key for the Booking entity
         public int Id { get; set; }
 
-        [Required]
+        // The ID of the ticket that has been booked (foreign key)
+        [Required] 
         public int TicketId { get; set; }
 
-        [Required]
+        // The name/title of the ticket (e.g., "Cricket Final Match")
+        [Required] 
         public string TicketName { get; set; }
 
-        [Required]
+        // The ID of the user who made the booking (foreign key)
+        [Required] 
         public int UserId { get; set; }
 
-        [Required]
+        // The name of the user who made the booking
+        [Required] 
         public string UserName { get; set; }
 
-        [Required]
+        // Number of tickets the user booked
+        [Required] 
         public int Count { get; set; }
 
-        public User? User { get; set; }  // Nullable navigation property
+        // Navigation property to access related User entity details
+        // This is optional (nullable) and helps with Entity Framework relationships
+        public User? User { get; set; }
 
+        // Constructor to initialize Booking with required details
         public Booking(int ticketId, string ticketName, int userId, string userName, int count)
         {
             TicketId = ticketId;
