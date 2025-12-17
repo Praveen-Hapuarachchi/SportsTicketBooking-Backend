@@ -12,8 +12,8 @@ using SportsTicketBooking.Data;
 namespace SportsTicketBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250216124757_AddAdminIdToTicket")]
-    partial class AddAdminIdToTicket
+    [Migration("20250724065023_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

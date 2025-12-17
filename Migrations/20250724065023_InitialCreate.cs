@@ -28,7 +28,8 @@ namespace SportsTicketBooking.Migrations
                     MatchDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     MatchImageUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TicketCount = table.Column<int>(type: "int", nullable: false)
+                    TicketCount = table.Column<int>(type: "int", nullable: false),
+                    AdminId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

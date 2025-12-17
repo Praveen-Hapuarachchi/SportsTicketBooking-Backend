@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);     // Create builder to confi
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"), // Gets connection string from appsettings.json or environment
-        new MySqlServerVersion(new Version(8, 0, 21))                    // Specifies MySQL version for compatibility
+        new MySqlServerVersion(new Version(8, 0, 43))                    // Specifies MySQL version for compatibility
     )
 );
 
@@ -69,7 +69,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)  // U
         };
     });
 
+
 var app = builder.Build();  // Build the app with all the configured services and middleware
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SportsTicketBooking API V1");
+    });
+}
+
 
 // Add authentication middleware so app validates JWT tokens in incoming requests
 app.UseAuthentication();
