@@ -117,5 +117,23 @@ namespace SportsTicketBooking.Services
             // Convert to object list (since anonymous types can't be returned directly)
             return bookings.Cast<object>().ToList();
         }
+
+        // In TicketService.cs, add this method
+        public async Task<bool> UpdateTicket(int ticketId, string matchName, string matchDescription, DateTime matchDate, string matchImageUrl, int ticketCount, int adminId)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(t => t.Id == ticketId);
+            if (ticket == null || ticket.AdminId != adminId)
+                return false; // Ticket not found or not owned by this admin
+
+            // Update properties
+            ticket.MatchName = matchName;
+            ticket.MatchDescription = matchDescription;
+            ticket.MatchDate = matchDate;
+            ticket.MatchImageUrl = matchImageUrl;
+            ticket.TicketCount = ticketCount;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

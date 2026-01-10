@@ -35,6 +35,8 @@ namespace SportsTicketBooking.Models
         [Required]
         public int AdminId { get; set; }
 
+        public DateTime? CreatedDate { get; set; }
+
         // Constructor to initialize the Ticket object with necessary values
         public Ticket(string matchName, string matchDescription, DateTime matchDate, string matchImageUrl, int ticketCount, int adminId)
         {
@@ -44,6 +46,7 @@ namespace SportsTicketBooking.Models
             MatchImageUrl = matchImageUrl;
             TicketCount = ticketCount;
             AdminId = adminId;
+            CreatedDate = DateTime.UtcNow;
         }
     }
 }

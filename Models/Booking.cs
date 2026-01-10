@@ -34,6 +34,9 @@ namespace SportsTicketBooking.Models
         // This is optional (nullable) and helps with Entity Framework relationships
         public User? User { get; set; }
 
+        public DateTime? CreatedDate { get; set; }
+
+
         // Constructor to initialize Booking with required details
         public Booking(int ticketId, string ticketName, int userId, string userName, int count)
         {
@@ -42,6 +45,7 @@ namespace SportsTicketBooking.Models
             UserId = userId;
             UserName = userName;
             Count = count;
+            CreatedDate = DateTime.UtcNow;
         }
     }
 }

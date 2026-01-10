@@ -30,6 +30,8 @@ namespace SportsTicketBooking.Models
         [Required]
         public UserType UserType { get; set; }
 
+        public DateTime? CreatedDate { get; set; }
+
         // List of bookings made by the user
         // This is a navigation property to the related bookings
         public List<Booking> Bookings { get; set; } = new List<Booking>();
@@ -42,6 +44,7 @@ namespace SportsTicketBooking.Models
             Email = email;
             PasswordHash = passwordHash;
             UserType = userType;
+            CreatedDate = DateTime.UtcNow;
         }
     }
 }
