@@ -160,6 +160,32 @@ namespace SportsTicketBooking.Controllers
             // Return bookings or 404 if none found
             return bookings.Count > 0 ? Ok(bookings) : NotFound("No bookings found for this ticket.");
         }
+
+        // In TicketController.cs, add this endpoint
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateTicket(int id, [FromBody] UpdateTicketRequest request)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("Invalid user.");
+
+            var adminId = int.Parse(userIdClaim.Value);
+
+            var success = await _ticketService.UpdateTicket(
+                id,
+                request.MatchName,
+                request.MatchDescription,
+                request.MatchDate,
+                request.MatchImageUrl,
+                request.TicketCount,
+                adminId);
+
+            if (!success)
+                return NotFound("Ticket not found or you are not authorized to update it.");
+
+            return Ok("Ticket updated successfully");
+        }
     }
 
     // Model class to receive ticket creation data from API requests
@@ -187,5 +213,25 @@ namespace SportsTicketBooking.Controllers
     {
         public int UserId { get; set; }  // User who wants to book tickets
         public int Count { get; set; }   // Number of tickets to book
+    }
+
+    // In TicketController.cs, add this class
+    public class UpdateTicketRequest
+    {
+        public string MatchName { get; set; }
+        public string MatchDescription { get; set; }
+        public DateTime MatchDate { get; set; }
+        public string MatchImageUrl { get; set; }
+        public int TicketCount { get; set; }
+
+        // Constructor (optional, for consistency)
+        public UpdateTicketRequest(string matchName, string matchDescription, DateTime matchDate, string matchImageUrl, int ticketCount)
+        {
+            MatchName = matchName;
+            MatchDescription = matchDescription;
+            MatchDate = matchDate;
+            MatchImageUrl = matchImageUrl;
+            TicketCount = ticketCount;
+        }
     }
 }
